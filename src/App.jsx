@@ -1,21 +1,25 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Layout from './components/shared/Layout'
-import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
-import Products from './pages/Products'
+import CreateTask from './pages/CreateTask'
+import TaskList from './pages/TaskList'
+import { TaskProvider } from './context/TaskContext'
+
 
 function App() {
     return (
+      <TaskProvider>
         <Router>
-            <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<Dashboard />} />
-                    <Route path="products" element={<Products />} />
-                </Route>
-                <Route path="/register" element={<Register />} />
-            </Routes>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="create-task" element={<CreateTask />} />
+              <Route path="task-list" element={<TaskList />} />
+            </Route>
+          </Routes>
         </Router>
-    )
-}
-
+      </TaskProvider>
+    );
+  }
+  
 export default App
